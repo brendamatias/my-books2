@@ -1,21 +1,58 @@
 import * as React from "react"
-import BookList from "../BookList"
-import { Container } from "./styles"
+import Sidebar from '../Sidebar';
+import SidebarSecondary from '../SidebarSecondary';
+import Home from './Home';
+import MyBooks from './MyBooks';
 
-const Dashboard = ({ unreadBooks }) => {
+import { Wrapper } from './styles';
+import {
+  LOCAL_STORAGE_READ_BOOKS,
+  LOCAL_STORAGE_WISHLIST,
+  LOCAL_STORAGE_UNREAD_BOOKS
+} from '../../utils/constants';
+
+const Dashboard = ({ handleLogout }) => {
+  const [page, setPage] = React.useState('home');
+  const [readBooks, setReadBooks] = React.useState([]);
+  const [unreadBooks, setUnreadBooks] = React.useState([]);
+  const [wishlist, setWishList] = React.useState([]);
+
+  const getBooks = async () => {
+    const readBooksUnformatted = localStorage.getItem(LOCAL_STORAGE_READ_BOOKS);
+    const unreadBooksUnformatted = localStorage.getItem(LOCAL_STORAGE_UNREAD_BOOKS);
+    const wishlistUnformatted = localStorage.getItem(LOCAL_STORAGE_WISHLIST);
+
+    setReadBooks(readBooksUnformatted && JSON.parse(readBooksUnformatted) || []);
+    setUnreadBooks(unreadBooksUnformatted && JSON.parse(unreadBooksUnformatted) || []);
+    setWishList(wishlistUnformatted && JSON.parse(wishlistUnformatted) || []);
+  }
+
+  React.useEffect(() => {
+    getBooks();
+  }, []);
+
   return (
-    <Container>
-      <div className="banner">
-        <h1>Hi Brenda!</h1>
+    <Wrapper>
+      <title>Books</title>
+      <Sidebar page={page} setPage={setPage} handleLogout={handleLogout} />
 
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-
-        <button type="button">Browser Latest</button>
+      <div className="container">
+        {page === 'home' && <Home unreadBooks={unreadBooks} />}
+        {page === 'my-books' &&
+          <MyBooks
+            readBooks={readBooks}
+            setReadBooks={setReadBooks}
+            unreadBooks={unreadBooks}
+            setUnreadBooks={setUnreadBooks}
+            wishlist={wishlist}
+            setWishList={setWishList}
+          />
+        }
       </div>
 
-      <BookList title="Não Lidos" books={unreadBooks} />
-    </Container>
-  )
+      <SidebarSecondary wishListCount={wishlist.length} readCount={readBooks.length} readBooks={readBooks} />
+    </Wrapper>
+  );
 }
 
-export default Dashboard
+export default Dashboard;

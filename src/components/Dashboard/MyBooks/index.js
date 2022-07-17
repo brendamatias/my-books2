@@ -3,8 +3,8 @@ import { Container } from './styles'
 import { MdSearch } from 'react-icons/md'
 import axios from "axios"
 import { toast } from "react-toastify"
-import BookList from "../BookList"
-import { LOCAL_STORAGE_READ_BOOKS, LOCAL_STORAGE_UNREAD_BOOKS, LOCAL_STORAGE_WISHLIST } from "../../utils/constants"
+import BookList from "../../BookList"
+import { LOCAL_STORAGE_READ_BOOKS, LOCAL_STORAGE_UNREAD_BOOKS, LOCAL_STORAGE_WISHLIST } from "../../../utils/constants"
 
 const BOOK_API = 'https://www.googleapis.com/books/v1/volumes?q='
 

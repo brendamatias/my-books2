@@ -1,38 +1,6 @@
 import styled from 'styled-components'
 import bgLogin from '../../images/bg-login.svg';
 
-export const Wrapper = styled.section`
-  display: grid;
-  grid-template-columns: 240px 1fr 280px;
-  height: 100vh;
-
-  > .container {
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    overflow-y: auto;
-    padding: 40px 100px 40px 100px;
-
-    &::-webkit-scrollbar {
-      width: 8px;
-      cursor: pointer;
-    }
-
-    &::-webkit-scrollbar-track {
-      background-color: #252836;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: #181720;
-      border-radius: 6px;
-    }
-
-    &::-webkit-scrollbar-thumb:hover {
-      background: #111;
-    }
-  }
-`;
-
 export const Login = styled.section`
   display: grid;
   grid-template-columns: 0.6fr 1fr;

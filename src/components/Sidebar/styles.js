@@ -38,6 +38,10 @@ export const Container = styled.section`
           font-size: 14px;
         }
       }
+
+      &:hover, &:hover svg {
+        color: #fff;
+      }
     }
   }
 `;

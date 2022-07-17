@@ -3,10 +3,12 @@ import { Container } from "./styles"
 import { FaUser } from 'react-icons/fa';
 import { ImTrophy } from 'react-icons/im';
 import { MdBookmark, MdMenuBook } from 'react-icons/md';
+import { navigate } from "gatsby"
 
 const SidebarSecondary = ({ wishListCount, readCount, readBooks }) => {
   const [pagesRead, setPageReads] = React.useState(0);
   const [authors, setAuthors] = React.useState([]);
+  const [user, setUser] = React.useState({});
 
   React.useEffect(() => {
     let pageReadsCount = 0;
@@ -21,11 +23,17 @@ const SidebarSecondary = ({ wishListCount, readCount, readBooks }) => {
     setAuthors(authorsArray);
   }, [readBooks]);
 
+  React.useEffect(() => {
+    const currentUser = localStorage.getItem('my-books');
+
+    setUser(JSON.parse(currentUser));
+  }, []);
+
   return (
     <Container>
       <div className="avatar"></div>
-      <strong>Brenda Matias</strong>
-      <span>brenda@gmail.com</span>
+      <strong>{user.name}</strong>
+      <span>{user.email}</span>
 
       <div className="pages-read">
         <ImTrophy />

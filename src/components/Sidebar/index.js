@@ -5,7 +5,7 @@ import { IoMdMoon } from "react-icons/io";
 
 import { Container, SidebarWrapper } from "./styles"
 
-const Sidebar = ({ page, setPage }) => {
+const Sidebar = ({ page, setPage, handleLogout }) => {
   const links = [
     {
       id: 'home',
@@ -28,10 +28,10 @@ const Sidebar = ({ page, setPage }) => {
     <Container>
       <div>
         <div>
-          <a class="logo" href="#teste">mybooks</a>
+          <a className="logo" href="#teste">mybooks</a>
 
           <SidebarWrapper>
-            <div class="sidebar-title">MENU</div>
+            <div className="sidebar-title">MENU</div>
 
             <ul>
               {links.map((link) => (
@@ -49,7 +49,7 @@ const Sidebar = ({ page, setPage }) => {
 
       <div className="footer">
         <div>
-          <button type="button">
+          <button type="button" onClick={() => handleLogout()}>
             <div className="icon"><FaSignOutAlt /></div>
             Sair
           </button>
