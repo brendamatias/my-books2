@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const Container = styled.section`
-  border-left: 1px solid #181720;
   padding: 60px 0;
   text-align: center;
 
@@ -20,7 +19,7 @@ export const Container = styled.section`
   > span {
     display: block;
     font-size: 12px;
-    color: #808191;
+    color: ${props => props.theme.secondaryColor};
     max-width: 200px;
     overflow: hidden;
     margin: 0 auto;
@@ -43,8 +42,6 @@ export const Container = styled.section`
   }
 
   > .info {
-    border-top: 1px solid #181720;
-    border-bottom: 1px solid #181720;
     padding: 40px;
 
     > div {
@@ -57,7 +54,7 @@ export const Container = styled.section`
       }
 
       .icon {
-        background-color: #252836;
+        background-color: rgba(195, 207, 244, 0.2);;
         padding: 15px;
         border-radius: 8px;
         display: flex;
@@ -72,17 +69,18 @@ export const Container = styled.section`
       > div > span {
         font-size: 10px;
         display: block;
-        color: #808191;
+        color: ${props => props.theme.secondaryColor};
       }
     }
   }
 
   > .authours-read {
-    background-color: #252836;
+    background-color: rgba(195,207,244,0.2);
     margin: 40px 40px 0 40px;
     padding: 15px 0 15px 15px;
     text-align: left;
-    border-radius: 8px;
+    border-radius: 20px;
+    width: 200px;
 
     > strong {
       display: block;
@@ -124,11 +122,12 @@ export const Container = styled.section`
           justify-content: center;
           width: 40px;
           height: 40px;
-          background-color: #353340;
+          background-color: #1F1C2E;
           border-radius: 50%;
 
           > svg {
             font-size: 13px;
+            color: #fff;
           }
         }
 
@@ -145,6 +144,7 @@ export const Container = styled.section`
         span {
           display: block;
           font-size: 10px;
+          color: ${props => props.theme.secondaryColor};
         }
       }
     }

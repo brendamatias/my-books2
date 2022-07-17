@@ -1,4 +1,3 @@
-import './styles.css';
 import 'react-toastify/dist/ReactToastify.css';
 import '@fontsource/open-sans';
 
@@ -7,8 +6,12 @@ import { ToastContainer } from "react-toastify"
 
 import SignIn from '../components/SignIn';
 import Dashboard from '../components/Dashboard';
+import { ThemeProvider } from 'styled-components';
+import { dark, light } from '../styles/themes';
+import GlobalStyle from '../styles/Global';
 
 const IndexPage = () => {
+  const [theme, setTheme] = React.useState('dark');
   const [user, setUser] = React.useState({});
   const [isAuthenticated, setIsAuthenticated] = React.useState(false);
 
@@ -33,13 +36,20 @@ const IndexPage = () => {
     setUser({});
   }
 
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  }
+
   return (
     <main>
       <title>Books</title>
 
-      {isAuthenticated ? <Dashboard handleLogout={handleLogout} /> : <SignIn handleSignIn={handleSignIn} />}
+      <ThemeProvider theme={theme === 'dark' ? dark : light}>
+        {isAuthenticated ? <Dashboard handleLogout={handleLogout} toggleTheme={toggleTheme} /> : <SignIn handleSignIn={handleSignIn} />}
+        <ToastContainer autoClose={5000} theme="colored" />
+        <GlobalStyle />
 
-      <ToastContainer autoClose={5000} theme="colored" />
+      </ThemeProvider>
     </main>
   )
 }

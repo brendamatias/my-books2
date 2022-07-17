@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
-export const Container = styled.section`
-  border-right: 1px solid #181720;
+export const Container = styled.div`
   padding: 60px 40px;
 
   > div {
@@ -18,7 +17,7 @@ export const Container = styled.section`
       display: flex;
       align-items: center;
       gap: 16px;
-      color: #808191;
+      color: ${props => props.theme.tertiaryColor};
       font-weight: 600;
       background-color: transparent;
       padding: 0;
@@ -32,7 +31,7 @@ export const Container = styled.section`
         padding: 8px;
         border-radius: 10px;
         flex-shrink: 0;
-        color: #808191;
+        color: ${props => props.theme.tertiaryColor};
 
         svg {
           font-size: 14px;
@@ -40,7 +39,7 @@ export const Container = styled.section`
       }
 
       &:hover, &:hover svg {
-        color: #fff;
+        color: ${props => props.theme.mainColor};
       }
     }
   }
@@ -66,7 +65,7 @@ export const SidebarWrapper = styled.div`
         display: flex;
         align-items: center;
         gap: 16px;
-        color: #808191;
+        color: ${props => props.theme.tertiaryColor};
         font-weight: 600;
         background-color: transparent;
         padding: 0;
@@ -81,15 +80,17 @@ export const SidebarWrapper = styled.div`
           background-color: #353340;
           flex-shrink: 0;
           color: #808191;
+
           svg {
             font-size: 14px;
+            color: #fff;
           }
         }
       }
 
       &:hover, &.active {
         & button {
-          color: #fff;
+          color: ${props => props.theme.mainColor};
         }
 
         &:nth-child(2n + 1) .icon {

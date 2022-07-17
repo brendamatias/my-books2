@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Container = styled.section`
+export const Container = styled.div`
   > strong {
     display: block;
     font-size: 13px;
@@ -13,7 +13,6 @@ export const Container = styled.section`
     }
 
     strong {
-      color: #fff;
       font-size: 14px;
       line-height: 1.4em;
       margin: 12px 0 4px 0;
@@ -25,7 +24,7 @@ export const Container = styled.section`
 
     span {
       font-size: 12px;
-      color: #808191;
+      color: ${props => props.theme.secondaryColor};
       margin: 0;
       overflow: hidden;
       display: -webkit-box;
@@ -54,7 +53,7 @@ export const Container = styled.section`
       border-radius: 50%;
       padding: 6px;
       z-index: 9999999;
-      opacity: 0.8;
+      background-color: rgba(195,207,244,0.2);
 
       &:hover {
         opacity: 1;
@@ -62,6 +61,7 @@ export const Container = styled.section`
 
       > svg {
         font-size: 11px;
+        color: #fff;
       }
     }
   }

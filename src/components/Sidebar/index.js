@@ -1,11 +1,13 @@
 import * as React from "react"
 import { FaHome, FaThLarge, FaSignOutAlt } from "react-icons/fa";
 import { ImBooks } from "react-icons/im";
-import { IoMdMoon } from "react-icons/io";
+import { IoMdMoon, IoMdSunny } from "react-icons/io";
 
 import { Container, SidebarWrapper } from "./styles"
 
-const Sidebar = ({ page, setPage, handleLogout }) => {
+const Sidebar = ({ page, setPage, handleLogout, toggleTheme }) => {
+  const [theme, setTheme] = React.useState('dark');
+
   const links = [
     {
       id: 'home',
@@ -56,9 +58,12 @@ const Sidebar = ({ page, setPage, handleLogout }) => {
         </div>
 
         <div className="dark-mode">
-          <button type="button">
-            <div className="icon"><IoMdMoon /></div>
-            Light Mode
+          <button type="button" onClick={() => toggleTheme()}>
+            <div className="icon">
+              {theme === 'dark' ? <IoMdSunny /> : <IoMdMoon />}
+            </div>
+
+            {theme === 'dark' ? 'Light' : 'Dark'} Mode
           </button>
         </div>
       </div>

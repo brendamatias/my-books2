@@ -1,30 +1,22 @@
 import styled from 'styled-components'
-import bgLogin from '../../images/bg-login.svg';
 
-export const Login = styled.section`
-  display: grid;
-  grid-template-columns: 0.6fr 1fr;
+export const Login = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 100vh;
-  background-color: #fff;
-
-  > .banner {
-    background-color: #FFCB05;
-    background-image: url(${bgLogin});
-    background-position: right bottom;
-    background-size: 600px;
-    background-repeat: no-repeat;
-  }
+  background-color: ${props => props.theme.appSections};
 
   > .content {
     padding: 80px 100px;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    width: 650px;
 
     > h1 {
       text-align: center;
       margin: 0 auto;
-      color: #050941;
       font-size: 40px;
     }
 
@@ -34,7 +26,7 @@ export const Login = styled.section`
       text-align: center;
       margin-bottom: 60px;
       margin-top: 10px;
-      color: #808191;
+      color: ${props => props.theme.secondaryColor};
     }
 
     > form {
@@ -43,7 +35,7 @@ export const Login = styled.section`
           display: block;
           font-size: 14px;
           margin-bottom: 8px;
-          color: #050941;
+          color: ${props => props.theme.mainColor};
         }
 
         > div {
@@ -51,19 +43,11 @@ export const Login = styled.section`
           gap: 1rem;
           align-items: center;
           padding: 10px 20px;
-          background-color: #EDF2F4;
+          background-color: ${props => props.theme.bgInput};
           border-radius: 4px;
 
-          > input {
-            width: 100%;
-            font-size: 14px;
-            color: #050941;
-            background-color: transparent;
-            border: 0;
-          }
-
           svg {
-            color: #272B53;
+            color: ${props => props.theme.mainColor};
           }
         }
 
@@ -85,7 +69,6 @@ export const Login = styled.section`
         align-items: center;
         justify-content: center;
         margin-top: 30px;
-        background-color: #FFCB05;
       }
     }
   }

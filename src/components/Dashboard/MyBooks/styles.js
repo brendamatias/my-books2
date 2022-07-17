@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Container = styled.section`
+export const Container = styled.div`
   > h1 {
     font-size: 30px;
     font-weight: 700;
@@ -17,7 +17,7 @@ export const Container = styled.section`
 
   > .search-container {
     position: relative;
-    background-color: #252836;
+    background-color: ${props => props.theme.bgInput};
     border-radius: 4px;
 
     > .search-input {
@@ -30,31 +30,18 @@ export const Container = styled.section`
         font-size: 20px;
         color: #556479;
       }
-
-      > input {
-        width: 100%;
-        border: 0;
-        font-size: 14px;
-        font-family: "Open Sans";
-        color: #fff;
-        background-color: #252836;
-
-        &:focus {
-          outline: none;
-        }
-      }
     }
 
     > .search-dropdown {
       position: absolute;
-      background-color: #252836;
+      background-color: ${props => props.theme.bgInput};
       top: 46px;
       border-radius: 4px;
       width: 100%;
       max-height: 240px;
       overflow: hidden;
       overflow-y: auto;
-      z-index: 999;
+      z-index: 999999999;
 
       &::-webkit-scrollbar {
         width: 8px;
@@ -83,14 +70,15 @@ export const Container = styled.section`
         display: flex;
         align-items: center;
         gap: 1rem;
-        background-color: #252836;
+        background-color: ${props => props.theme.bgInput};
+        color: ${props => props.theme.mainColor};
 
         > img {
           width: 30px;
         }
 
         &:hover {
-          background-color: #353340;
+          background-color: ${props => props.theme.mainHover};
         }
       }
     }

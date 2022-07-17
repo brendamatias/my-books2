@@ -1,6 +1,5 @@
 import * as React from "react"
 import { MdMail, MdLock } from 'react-icons/md';
-import { navigate } from "gatsby"
 
 import { Login } from './styles';
 
@@ -66,8 +65,6 @@ const SignIn = ({ handleSignIn }) => {
           <button type="submit">Entrar</button>
         </form>
       </div>
-
-      <div className="banner" />
     </Login>
   )
 }

@@ -11,7 +11,7 @@ import {
   LOCAL_STORAGE_UNREAD_BOOKS
 } from '../../utils/constants';
 
-const Dashboard = ({ handleLogout }) => {
+const Dashboard = ({ handleLogout, toggleTheme }) => {
   const [page, setPage] = React.useState('home');
   const [readBooks, setReadBooks] = React.useState([]);
   const [unreadBooks, setUnreadBooks] = React.useState([]);
@@ -34,7 +34,7 @@ const Dashboard = ({ handleLogout }) => {
   return (
     <Wrapper>
       <title>Books</title>
-      <Sidebar page={page} setPage={setPage} handleLogout={handleLogout} />
+      <Sidebar toggleTheme={toggleTheme} page={page} setPage={setPage} handleLogout={handleLogout} />
 
       <div className="container">
         {page === 'home' && <Home unreadBooks={unreadBooks} />}
