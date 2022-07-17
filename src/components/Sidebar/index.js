@@ -1,43 +1,66 @@
 import * as React from "react"
-import { MdHouseSiding, MdBook } from "react-icons/md";
-import { Container } from "./styles"
+import { FaHome, FaThLarge, FaSignOutAlt } from "react-icons/fa";
+import { ImBooks } from "react-icons/im";
+import { IoMdMoon } from "react-icons/io";
+
+import { Container, SidebarWrapper } from "./styles"
 
 const Sidebar = ({ page, setPage }) => {
   const links = [
     {
       id: 'home',
       label: 'Home',
-      icon: <MdHouseSiding />
+      icon: <FaHome />
     },
     {
       id: 'my-books',
       label: 'Meus livros',
-      icon: <MdBook />
+      icon: <ImBooks />
     },
     {
-      id: 'teste',
-      label: 'Teste',
-      icon: <MdHouseSiding />
+      id: 'recommendations',
+      label: 'Recomendações',
+      icon: <FaThLarge />
     },
   ];
 
   return (
     <Container>
-      <a class="logo" href="#">mybooks</a>
+      <div>
+        <div>
+          <a class="logo" href="#teste">mybooks</a>
 
-      <div className="sidebar">
-        <div class="sidebar-title">MENU</div>
+          <SidebarWrapper>
+            <div class="sidebar-title">MENU</div>
 
-        <ul>
-          {links.map((link) => (
-            <li key={link.id} className={`${link.id === page && 'active'}`}>
-              <button type="button" onClick={() => setPage(link.id)}>
-                <div className="icon">{link.icon}</div>
-                {link.label}
-              </button>
-            </li>
-          ))}
-        </ul>
+            <ul>
+              {links.map((link) => (
+                <li key={link.id} className={`${link.id === page && 'active'}`}>
+                  <button type="button" onClick={() => setPage(link.id)}>
+                    <div className="icon">{link.icon}</div>
+                    {link.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </SidebarWrapper>
+        </div>
+      </div>
+
+      <div className="footer">
+        <div>
+          <button type="button">
+            <div className="icon"><FaSignOutAlt /></div>
+            Sair
+          </button>
+        </div>
+
+        <div className="dark-mode">
+          <button type="button">
+            <div className="icon"><IoMdMoon /></div>
+            Light Mode
+          </button>
+        </div>
       </div>
     </Container>
   )
