@@ -11,7 +11,7 @@ import MyBooks from '../components/MyBooks';
 import { Wrapper } from './styles';
 import {
   LOCAL_STORAGE_READ_BOOKS,
-  LOCAL_STORAGE_TO_BUY_BOOKS,
+  LOCAL_STORAGE_WISHLIST,
   LOCAL_STORAGE_UNREAD_BOOKS
 } from '../utils/constants';
 
@@ -19,16 +19,16 @@ const IndexPage = () => {
   const [page, setPage] = React.useState('home');
   const [readBooks, setReadBooks] = React.useState([]);
   const [unreadBooks, setUnreadBooks] = React.useState([]);
-  const [toBuyBooks, setToBuyBooks] = React.useState([]);
+  const [wishlist, setWishList] = React.useState([]);
 
   const getBooks = async () => {
     const readBooksUnformatted = localStorage.getItem(LOCAL_STORAGE_READ_BOOKS);
     const unreadBooksUnformatted = localStorage.getItem(LOCAL_STORAGE_UNREAD_BOOKS);
-    const toBuyBooksUnformatted = localStorage.getItem(LOCAL_STORAGE_TO_BUY_BOOKS);
+    const wishlistUnformatted = localStorage.getItem(LOCAL_STORAGE_WISHLIST);
 
     setReadBooks(readBooksUnformatted && JSON.parse(readBooksUnformatted) || []);
     setUnreadBooks(unreadBooksUnformatted && JSON.parse(unreadBooksUnformatted) || []);
-    setToBuyBooks(toBuyBooksUnformatted && JSON.parse(toBuyBooksUnformatted) || []);
+    setWishList(wishlistUnformatted && JSON.parse(wishlistUnformatted) || []);
   }
 
   React.useEffect(() => {
@@ -43,10 +43,19 @@ const IndexPage = () => {
 
         <div className="container">
           {page === 'home' && <Dashboard unreadBooks={unreadBooks} />}
-          {page === 'my-books' && <MyBooks unreadBooks={unreadBooks} />}
+          {page === 'my-books' &&
+            <MyBooks
+              readBooks={readBooks}
+              setReadBooks={setReadBooks}
+              unreadBooks={unreadBooks}
+              setUnreadBooks={setUnreadBooks}
+              wishlist={wishlist}
+              setWishList={setWishList}
+            />
+          }
         </div>
 
-        <SidebarSecondary wishListCount={toBuyBooks.length} readCount={readBooks.length} />
+        <SidebarSecondary wishListCount={wishlist.length} readCount={readBooks.length} readBooks={readBooks} />
       </Wrapper>
       <ToastContainer autoClose={5000} theme="colored" />
     </>

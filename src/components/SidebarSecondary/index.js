@@ -1,9 +1,26 @@
 import * as React from "react"
 import { Container } from "./styles"
+import { FaUser } from 'react-icons/fa';
 import { ImTrophy } from 'react-icons/im';
 import { MdBookmark, MdMenuBook } from 'react-icons/md';
 
-const SidebarSecondary = ({ wishListCount, readCount}) => {
+const SidebarSecondary = ({ wishListCount, readCount, readBooks }) => {
+  const [pagesRead, setPageReads] = React.useState(0);
+  const [authors, setAuthors] = React.useState([]);
+
+  React.useEffect(() => {
+    let pageReadsCount = 0;
+    let authorsArray = [];
+
+    readBooks.forEach((book) => {
+      pageReadsCount = pageReadsCount + (book.page_count || 0);
+      authorsArray[book.author] = (authorsArray[book.author] || 0) + 1;
+    });
+
+    setPageReads(pageReadsCount);
+    setAuthors(authorsArray);
+  }, [readBooks]);
+
   return (
     <Container>
       <div className="avatar"></div>
@@ -12,7 +29,7 @@ const SidebarSecondary = ({ wishListCount, readCount}) => {
 
       <div className="pages-read">
         <ImTrophy />
-        <strong>500+<br />Páginas Lidas</strong>
+        <strong>{pagesRead}+<br />Páginas Lidas</strong>
       </div>
 
       <div className="info">
@@ -41,12 +58,14 @@ const SidebarSecondary = ({ wishListCount, readCount}) => {
         <strong>Authors Read</strong>
 
         <ul>
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((author => (
-            <li key={author}>
-              <div className="image"></div>
+          {Object.keys(authors).map(((item) => (
+            <li key={item}>
+              <div className="icon">
+                <FaUser />
+              </div>
               <div>
-                <strong>Stephen King</strong>
-                <span>120 books</span>
+                <strong>{item}</strong>
+                <span>{authors[item]} book {authors[item] > 1 && 's'} read</span>
               </div>
             </li>
           )))}

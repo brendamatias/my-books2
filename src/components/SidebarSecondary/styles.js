@@ -112,14 +112,21 @@ export const Container = styled.section`
         gap: 0.5rem;
 
         &:not(:last-child) {
-          margin-bottom: 10px;
+          margin-bottom: 15px;
         }
 
-        > .image {
+        > .icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
           width: 40px;
           height: 40px;
-          background-color: #111;
+          background-color: #353340;
           border-radius: 50%;
+
+          > svg {
+            font-size: 13px;
+          }
         }
 
         strong {
