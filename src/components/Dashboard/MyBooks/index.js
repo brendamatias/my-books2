@@ -37,11 +37,11 @@ const MyBooks = ({
     const currentUnredBooks = [...unreadBooks, newBook]
 
     setUnreadBooks(currentUnredBooks);
-    setReadBooks(currentUnredBooks);
+    // setReadBooks(currentUnredBooks);
     setWishList(currentUnredBooks);
     setSearchTerm('');
 
-    localStorage.setItem(LOCAL_STORAGE_READ_BOOKS, JSON.stringify(currentUnredBooks));
+    // localStorage.setItem(LOCAL_STORAGE_READ_BOOKS, JSON.stringify(currentUnredBooks));
     localStorage.setItem(LOCAL_STORAGE_UNREAD_BOOKS, JSON.stringify(currentUnredBooks));
     localStorage.setItem(LOCAL_STORAGE_WISHLIST, JSON.stringify(currentUnredBooks));
   }
@@ -82,6 +82,14 @@ const MyBooks = ({
     deleteBook(book, 'unread');
   }
 
+  const setUnread = (book) => {
+    const currentBooks = [...unreadBooks, book];
+    localStorage.setItem(LOCAL_STORAGE_UNREAD_BOOKS, JSON.stringify(currentBooks));
+
+    setUnreadBooks(currentBooks);
+    deleteBook(book, 'wishlist');
+  }
+
   React.useEffect(() => {
     getBooks();
   }, [searchTerm]);
@@ -112,10 +120,22 @@ const MyBooks = ({
 
       <div className="content">
         <div>
-          <BookList title="Não Lidos" books={unreadBooks} />
+          <BookList
+            title="Não Lidos"
+            books={unreadBooks}
+            type="unread"
+            handleButton={setRead}
+            handleDeleteButton={deleteBook}
+        />
         </div>
         <div>
-          <BookList title="Quero comprar" books={wishlist} />
+          <BookList
+            title="Quero comprar"
+            books={wishlist}
+            type="wishlist"
+            handleButton={setUnread}
+            handleDeleteButton={deleteBook}
+          />
         </div>
         <div>
           <BookList title="Lidos" books={readBooks} withDescription />

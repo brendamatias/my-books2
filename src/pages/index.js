@@ -21,7 +21,6 @@ const IndexPage = () => {
 
   React.useEffect(() => {
     setIsAuthenticated(!!user.email);
-    console.log(user.email)
   }, [user]);
 
   const handleSignIn = (data) => {

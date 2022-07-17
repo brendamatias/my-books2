@@ -21,6 +21,9 @@ export const Container = styled.section`
     display: block;
     font-size: 12px;
     color: #808191;
+    max-width: 200px;
+    overflow: hidden;
+    margin: 0 auto;
   }
 
   > .pages-read {
@@ -130,7 +133,13 @@ export const Container = styled.section`
         }
 
         strong {
+          display: block;
           font-size: 12px;
+          width: 120px;
+          display: -webkit-box;
+          overflow: hidden;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
         }
 
         span {

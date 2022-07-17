@@ -8,6 +8,10 @@ export const Container = styled.section`
   }
 
   > ul {
+    > li {
+      position: relative;
+    }
+
     strong {
       color: #fff;
       font-size: 14px;
@@ -29,10 +33,36 @@ export const Container = styled.section`
       -webkit-box-orient: vertical;
     }
 
-    img {
+    .image-button {
       height: 220px;
       width: 145px;
-      border-radius: 8px;
+      margin: 0;
+      padding: 0;
+      position: relative;
+
+      > img {
+        height: inherit;
+        width: inherit;
+        border-radius: 8px;
+      }
+    }
+
+    .remove-button {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      border-radius: 50%;
+      padding: 6px;
+      z-index: 9999999;
+      opacity: 0.8;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      > svg {
+        font-size: 11px;
+      }
     }
   }
 
@@ -111,5 +141,30 @@ export const ScrollVertical = styled.ul`
     flex-direction: column;
     min-width: 145px;
     width: 145px;
+
+    .image-button {
+      &::after {
+        content: '${props => props.type === 'unread' ? 'Marcar como lido' : 'Marcar como comprado'}';
+        display: none;
+        background-color: ${props => props.type === 'unread' ? '#0071B7' : '#007C4B'};
+        width: 100%;
+        position: absolute;
+        right: 0;
+        color: #fff;
+        top: calc(50% - 24px);
+        font-family: 'Open Sans';
+        font-size: 12px;
+        padding: 10px 0;
+        font-weight: 600;
+      }
+
+      &:hover img {
+        opacity: 0.3;
+      }
+
+      &:hover::after {
+        display: inline-block;
+      }
+    }
   }
 `;
